@@ -35,5 +35,12 @@
     	    2. Regular HTTP method
     	    3. Call another AWS service
     	    4. Mock data
-    	- use lambda proxy integration: passing data into the lambda function.
+    	- use lambda proxy integration: passing data into the lambda function. and give the enpoint method permission to run specified lambda function.
     	- refer to lambda function by typing function name into the input.
+        - once lambda function is setup, click test to test connection, if successful, you should get the callback message or error back.
+
+    deploy API:
+    - select deploy API
+        1. choose new stage
+        2. fill out stage name, stage description, and deployment description.
+    - once deployed, the deployment is listed inside stages.
