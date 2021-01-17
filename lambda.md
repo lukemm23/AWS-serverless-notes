@@ -8,6 +8,11 @@
 - tags: add and used in data analytics.
 - execution roles: defines the permissions of the file. default is automatically passed in.
 - settings: configures function timeouts, ramp up memory to use incase you have a complexed function. will cost more.
+- assign a fitting role, and check if existing role is there when creating a function that is not the first function.
+
+- go to API gateway and configure connection to lambda function
+  1. choose the correct region
+  2. function should populate at lambda function input.
 
 ### Lambda function promise method template:
 

@@ -11,7 +11,15 @@
         }
         xhr.send();
 
+        1. if content-type is not set add:
+        ie: xhr.setRequestHeader('content-type', 'application/json');
+
+        2. if data body is incorrect try:
+        ie: xhr.send(JSON.stringify({age:36, height:70, income:3100}));
+
     - go into resources > endpoint > method response: add new header name: Access-Control-Allow-Origin
     - go into resources > endpoint > integration response: set value for newly created header: '*' (allow access from all external servers and origins.)
     - re-deploy to the specified stage and overwrite to old stage.
     - run test again to get mesage response successfully.
+
+    - once setup, go to resource and click enable CORS to setup same config to all methods.

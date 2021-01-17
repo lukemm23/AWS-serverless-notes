@@ -47,7 +47,12 @@
         2. fill out stage name, stage description, and deployment description.
     - once deployed, the deployment is listed inside stages.
 
-### Data Forwarding: (simplifying data object for response)
+### Data Control and validation: (defining / manipulating data)
+
+    3 ways of data control
+        1. using model to define data shape at method request
+        2. using integration request and response and define body mapping templates
+        3. write logic in code inside lambda function.
 
     1. from Integration Request
     - select integration request: (when "Use Lambda Proxy" is checked)
@@ -76,6 +81,26 @@
             will return: {"your-name": "luke"},
             cloudwatch log will return: { "your-name": 'luke' }.
 
+    3. using model
+    select model:
+        1. create new model, and use JSON schema language to define model.
+        2. go to method request > request validator > check validate body.
+        3. go to method request > request body > register model.
+        4. you can also import model inside integrations request and response mapping template.
+
 ### Lambda Logs:
 
     - all event logs are inside cloudwatch > log groups > select API. this is very beneficial when needing to check console logs for data.
+
+### creating method with variable path: (using path parameters)
+
+    1. method 1
+        - create new resources name 'all' and 'single' off of existing resources.
+
+    2. method 2
+        - creating new resource name 'type', and resource path {type} as a variable.
+        - create one method off of resource and take a path parameter as variable.
+        - address type directed if/else statement to perform the right query.
+        - go to integration request and setup body mapping template to take a type property to lambda function. ie.
+            {"type":"$input.params('type')"}
+        - test by passing in path {type}.
