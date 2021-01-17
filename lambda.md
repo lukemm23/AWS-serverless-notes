@@ -22,5 +22,4 @@
 
     // call back initiates end of the function, returning either error or data.
     callback(null, event);
-
-};
+    };
