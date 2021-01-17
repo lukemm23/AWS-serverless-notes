@@ -8,3 +8,14 @@
 - tags: add and used in data analytics.
 - execution roles: defines the permissions of the file. default is automatically passed in.
 - settings: configures function timeouts, ramp up memory to use incase you have a complexed function. will cost more.
+
+### Lambda function promise method template:
+
+    exports.handler = (event, context, callback) => {
+    // TODO implement
+
+
+    // call back initiates end of the function, returning either error or data.
+    callback(null, event);
+
+};

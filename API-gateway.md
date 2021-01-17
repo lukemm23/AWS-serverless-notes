@@ -29,7 +29,8 @@
     1. proxy resource check box: using one resource as the sole resource of whole API to a project.
     2. API gateway CORS check box: cross origin resource sharing, a security feature for info sharing. By sending a header to client to allow sharing. Options for handling external requests. When enabled header options will have extra header options inside integration response.
 
-    create method:
+### Create method:
+
     	- integration type:
     	    1. Using a lambda function
     	    2. Regular HTTP method
@@ -39,8 +40,42 @@
     	- refer to lambda function by typing function name into the input.
         - once lambda function is setup, click test to test connection, if successful, you should get the callback message or error back.
 
-    deploy API:
+### Deploy API:
+
     - select deploy API
         1. choose new stage
         2. fill out stage name, stage description, and deployment description.
     - once deployed, the deployment is listed inside stages.
+
+### Data Forwarding: (simplifying data object for response)
+
+    1. from Integration Request
+    - select integration request: (when "Use Lambda Proxy" is checked)
+        1. check Use Lambda Proxy integration to pass complete data not just request body to the function
+        2. integration response will be grayed out, and CORS header will not be found. to fix it, lambda function callback() will need to return (null, {headers:{'Control-Access-Allow-Origin':'*'}})
+        to send over CORS permission.
+        3. see "Lambda Logs" accessing data/event
+    - select integration request: (when "Use Lambda Proxy" is not checked)
+        1. use mapping template (when no template is selected, all of data body will be forwarded).
+        2. check when there are no templates defined and add a template.
+        3. name "application/json"
+        4. select "method request passthrough" or refer to body mapping language to custom write template.
+        5. ie.
+            test data: {"personData":{"name":"luke"}},
+            mapping template: {"name" : $input.json('$.personData.name')},
+            will return: "luke",
+            cloudwatch log will return: { name: 'luke' }.
+
+    2. from Integration Response
+    - select integration response:
+        1. you can forward body mapping from integration request to response.
+        2. ie.
+            test data: {"personData":{"name":"luke"}},
+            request mapping template: {"name" : $input.json('$.personData.name')},
+            response mapping template: {"your-name" : $input.json('$'),
+            will return: {"your-name": "luke"},
+            cloudwatch log will return: { "your-name": 'luke' }.
+
+### Lambda Logs:
+
+    - all event logs are inside cloudwatch > log groups > select API. this is very beneficial when needing to check console logs for data.
