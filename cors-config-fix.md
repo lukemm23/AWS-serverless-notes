@@ -4,12 +4,12 @@
 
 - use codepend.io to run code: (mimic-ing a external request)
 
-  let xhr = new XMLHttpRequest();
-  xhr.open('POST', 'https://ixg2jkk4gh.execute-api.us-east-2.amazonaws.com/dev/compare-yourself'),
-  xhr.onreadystatechange = function(event){
-  console.log(event.target.response);
-  }
-  xhr.send();
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', 'https://ixg2jkk4gh.execute-api.us-east-2.amazonaws.com/dev/compare-yourself'),
+        xhr.onreadystatechange = function(event){
+        console.log(event.target.response);
+        }
+        xhr.send();
 
         1. if content-type is not set add:
         ie: xhr.setRequestHeader('content-type', 'application/json');
