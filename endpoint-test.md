@@ -20,7 +20,7 @@
         xhr.setRequestHeader('content-type', 'application/json');
         xhr.send(JSON.stringify({age:26, height:71, income:2100}));
 
-### delete template: (data body provided inside xhr.send())
+### delete template:
 
     let xhr = new XMLHttpRequest();
         xhr.open('DELETE', 'https://ixg2jkk4gh.execute-api.us-east-2.amazonaws.com/dev/compare-yourself'),
@@ -28,4 +28,4 @@
             console.log(event.target.response);
         }
         xhr.setRequestHeader('content-type', 'application/json');
-        xhr.send(JSON.stringify({age:26, height:71, income:2100}));
+        xhr.send();
