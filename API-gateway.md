@@ -104,3 +104,25 @@
         - go to integration request and setup body mapping template to take a type property to lambda function. ie.
             {"type":"$input.params('type')"}
         - test by passing in path {type}.
+
+### method response model:
+
+    - should always return data array with empty object, this can be accomplished with model.
+    - create new model > name model > ie. use the same model except change type to array and then set items objects type to object and move properties model inside items object.
+
+    {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "title": "CompareData",
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "age": {"type": "integer"},
+                "height": {"type": "integer"},
+                "income": {"type": "integer"}
+                }
+        },
+        "required": ["age", "height", "income"]
+    }
+
+    - then go back to resources > click on the end point > method response > response header > and change models to new model.
